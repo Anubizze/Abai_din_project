@@ -12,11 +12,7 @@ print("[1/7] Импорт основных модулей...", flush=True)
 import logging
 print("[2/7] Импорт bot.config...", flush=True)
 from bot.config import BOT_TOKEN
-<<<<<<< HEAD
 print("[OK] Токен загружен успешно", flush=True)
-=======
-print(f"[OK] Токен загружен: {BOT_TOKEN[:20]}...", flush=True)
->>>>>>> 4373336f92f3ef26cf663cabf08ef2460d0e7350
 print("[3/7] Импорт bot.bot...", flush=True)
 from bot.bot import bot
 print("[OK] Бот создан", flush=True)
