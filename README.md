@@ -36,6 +36,7 @@ SUPABASE_KEY=ваш_ключ
 
 ### 4. Запуск
 
+<<<<<<< HEAD
 **Локально:**
 ```bash
 python main.py
@@ -44,10 +45,17 @@ python main.py
 **На сервере Render.com:**
 См. подробную инструкцию в файле [`RENDER_DEPLOY.md`](RENDER_DEPLOY.md)
 
+=======
+```bash
+python TG.py
+```
+
+>>>>>>> 4373336f92f3ef26cf663cabf08ef2460d0e7350
 ## 📖 Подробная инструкция
 
 См. файл `SETUP.md` для детальной инструкции по настройке.
 
+<<<<<<< HEAD
 ## 🌐 Деплой на Render.com
 
 Для развертывания бота на Render.com см. файл [`RENDER_DEPLOY.md`](RENDER_DEPLOY.md)
@@ -58,6 +66,8 @@ python main.py
 3. Добавьте переменные окружения (см. `RENDER_DEPLOY.md`)
 4. Деплой!
 
+=======
+>>>>>>> 4373336f92f3ef26cf663cabf08ef2460d0e7350
 ## 🔐 Админ-команды
 
 - `/admin` - Меню админ-панели
