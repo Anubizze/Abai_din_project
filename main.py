@@ -10,6 +10,8 @@ if sys.platform == 'win32':
 
 print("[1/7] Импорт основных модулей...", flush=True)
 import logging
+import threading
+import time
 print("[2/7] Импорт bot.config...", flush=True)
 from bot.config import BOT_TOKEN
 print("[OK] Токен загружен успешно", flush=True)
@@ -91,6 +93,24 @@ def main():
         
         print("[POLLING] Запуск polling...", flush=True)
         sys.stdout.flush()
+        
+        # Keep-alive механизм для Free tier на Render.com
+        # Предотвращает засыпание сервиса после 15 минут неактивности
+        def keep_alive():
+            """Периодически делает запросы к Telegram API, чтобы сервис не засыпал"""
+            while True:
+                try:
+                    time.sleep(10 * 60)  # Ждем 10 минут (меньше чем 15 минут лимит)
+                    bot.get_me()  # Делаем запрос к API, чтобы сервис оставался активным
+                    print("[KEEP-ALIVE] Сервис активен", flush=True)
+                except Exception as e:
+                    print(f"[KEEP-ALIVE] Ошибка: {e}", flush=True)
+                    time.sleep(60)  # При ошибке ждем минуту перед повтором
+        
+        # Запускаем keep-alive в отдельном потоке
+        keep_alive_thread = threading.Thread(target=keep_alive, daemon=True)
+        keep_alive_thread.start()
+        print("[KEEP-ALIVE] Механизм keep-alive запущен (предотвращает засыпание на Free tier)", flush=True)
         
         # Добавляем обработчик для логирования всех обновлений
         import telebot
